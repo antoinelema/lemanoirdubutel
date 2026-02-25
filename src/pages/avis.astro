@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import { getCollection, render } from 'astro:content';
+
+import heroImage from '../assets/images/common/salon-commun.jpg';
+
+const avisCollection = await getCollection('avis');
+const avis = await Promise.all(
+  avisCollection.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { ...entry, Content };
+  })
+);
+
+const averageRating = avis.reduce((acc, a) => acc + a.data.rating, 0) / avis.length;
+---
+
+<Layout
+  title="Avis Clients — Le Manoir du Butel"
+  description="Découvrez les avis de nos hôtes sur leur séjour au Manoir du Butel. Chambres d'hôtes de charme en Normandie."
+>
+
+  <Hero
+    title="Avis de nos hôtes"
+    subtitle="Ce que nos visiteurs disent de leur séjour"
+    image={heroImage}
+    imageAlt="Salon commun du Manoir du Butel"
+    height="medium"
+  />
+
+  <!-- Note moyenne -->
+  <section class="py-10 bg-offwhite">
+    <div class="container mx-auto text-center">
+      <div class="inline-flex items-center gap-4 bg-sand rounded-xl px-8 py-5">
+        <div class="flex gap-1">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <svg
+              class={`w-6 h-6 ${i < Math.round(averageRating) ? 'text-gold' : 'text-stone'}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+        <div>
+          <p class="font-heading text-2xl font-bold text-brown">{averageRating.toFixed(1)}/5</p>
+          <p class="text-sm text-brown-light">{avis.length} avis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Liste des avis -->
+  <section class="section-padding bg-parchment">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {avis.map((entry) => {
+          const bodyEl = entry.body;
+          return (
+            <ReviewCard
+              author={entry.data.author}
+              date={entry.data.date}
+              rating={entry.data.rating}
+              text={bodyEl || ''}
+              source={entry.data.source}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="py-10 bg-offwhite">
+    <div class="container mx-auto text-center">
+      <p class="text-brown-light text-sm mb-4">Retrouvez-nous également sur</p>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a
+          href="https://www.booking.com/hotel/fr/le-manoir-du-butel.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brown-light hover:text-moss transition-colors font-heading font-semibold"
+        >
+          Booking.com
+        </a>
+        <a
+          href="https://www.tripadvisor.com/Hotel_Review-g6484029-d6426483-Reviews-Le_Manoir_Du_Butel-Saint_Amand_Manche_Basse_Normandie_Normandy.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brown-light hover:text-moss transition-colors font-heading font-semibold"
+        >
+          TripAdvisor
+        </a>
+        <a
+          href="https://www.google.com/maps/place/Le+Manoir+du+Butel/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brown-light hover:text-moss transition-colors font-heading font-semibold"
+        >
+          Google
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA />
+
+</Layout>

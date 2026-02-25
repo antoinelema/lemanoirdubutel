@@ -1,11 +1,194 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import RoomCard from '../components/RoomCard.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import Map from '../components/Map.astro';
+import { Image } from 'astro:assets';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import heroImage from '../assets/images/exterior/maison-principale.jpg';
+import salonImage from '../assets/images/common/salon-commun.jpg';
+import charretterieImage from '../assets/images/exterior/charretterie.jpg';
+import accesImage from '../assets/images/exterior/acces-propriete.jpg';
+
+import charlyImage from '../assets/images/rooms/charly/charly-preview.jpg';
+import mathieuImage from '../assets/images/rooms/mathieu/mathieu-preview.jpg';
+import natureImage from '../assets/images/rooms/nature/nature-preview.jpg';
+
+const rooms = [
+  {
+    title: 'Chambre Charly',
+    slug: 'charly',
+    image: charlyImage,
+    capacity: '2 pers.',
+    surface: '15 m²',
+    price: 'Dès 75€ / nuit',
+    description: 'Chambre de charme avec lit double 160cm et vue sur le domaine',
+  },
+  {
+    title: 'Chambre Mathieu',
+    slug: 'mathieu',
+    image: mathieuImage,
+    capacity: '2 pers.',
+    surface: '15 m²',
+    price: 'Dès 75€ / nuit',
+    description: 'Chambre confort avec lit double 160cm et décoration soignée',
+  },
+  {
+    title: 'Chambre Nature',
+    slug: 'nature',
+    image: natureImage,
+    capacity: '2-4 pers.',
+    surface: '18 m²',
+    price: 'Dès 85€ / nuit',
+    description: 'Chambre familiale modulable jusqu\'à 4 personnes',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Le Manoir du Butel — Chambres d'hôtes de charme en Normandie">
+
+  <!-- Hero -->
+  <Hero
+    title="Le Manoir du Butel"
+    subtitle="Chambres d'hôtes de charme en Normandie"
+    image={heroImage}
+    imageAlt="Le Manoir du Butel, maison principale du XVIIe siècle"
+    ctaText="Réserver votre séjour"
+    ctaLink="https://www.lemanoirdubutel.fr/chambres"
+  />
+
+  <!-- Bienvenue -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div>
+          <h2 class="mb-4">Bienvenue au Manoir</h2>
+          <div class="separator !mx-0 mb-6"></div>
+          <p class="text-brown-light leading-relaxed mb-4">
+            Niché au coeur de la campagne normande, le Manoir du Butel vous accueille
+            dans un cadre authentique et chaleureux. Ce manoir du XVIIe siècle, construit
+            entre 1630 et 1640 par Guillaume de la Gonivière, a été restauré avec passion
+            pour votre confort.
+          </p>
+          <p class="text-brown-light leading-relaxed mb-6">
+            La famille Lemariey vous ouvre les portes de ses trois chambres d'hôtes,
+            aménagées à l'étage de la charretterie. Un séjour au calme absolu, entre
+            les plages du Débarquement et le Mont-Saint-Michel.
+          </p>
+          <a href="/le-manoir" class="btn-secondary">Découvrir le manoir</a>
+        </div>
+        <div class="relative">
+          <Image
+            src={salonImage}
+            alt="Salon commun du Manoir du Butel"
+            class="rounded-lg shadow-lg w-full"
+            widths={[400, 600]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-moss/10 rounded-lg -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nos Chambres -->
+  <section class="section-padding bg-parchment">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2>Nos Chambres</h2>
+        <div class="separator mb-4"></div>
+        <p class="text-brown-light max-w-2xl mx-auto">
+          Trois chambres d'hôtes de charme, chacune avec sa personnalité,
+          pour un séjour inoubliable en Normandie
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {rooms.map((room) => (
+          <RoomCard {...room} />
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href="/chambres" class="btn-secondary">Voir toutes les chambres</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le Domaine -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2>Le Domaine</h2>
+        <div class="separator mb-4"></div>
+        <p class="text-brown-light max-w-2xl mx-auto">
+          Un manoir du XVIIe siècle entouré de verdure, composé de trois bâtiments
+          de caractère au coeur du bocage normand
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="md:col-span-2 relative overflow-hidden rounded-lg aspect-[16/10]">
+          <Image
+            src={charretterieImage}
+            alt="La charretterie du Manoir du Butel abritant les chambres d'hôtes"
+            class="w-full h-full object-cover"
+            widths={[600, 900]}
+            sizes="(max-width: 768px) 100vw, 66vw"
+          />
+        </div>
+        <div class="relative overflow-hidden rounded-lg aspect-[16/10] md:aspect-auto">
+          <Image
+            src={accesImage}
+            alt="Accès au domaine du Manoir du Butel"
+            class="w-full h-full object-cover"
+            widths={[400, 600]}
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/le-manoir" class="btn-secondary">Découvrir l'histoire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Situation -->
+  <section class="section-padding bg-sand">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="mb-4">Situation idéale</h2>
+          <div class="separator !mx-0 mb-6"></div>
+          <p class="text-brown-light leading-relaxed mb-4">
+            Le Manoir du Butel est idéalement situé dans le sud du Cotentin,
+            <strong>à mi-chemin entre les plages du Débarquement et le Mont-Saint-Michel</strong>.
+            Accès direct par l'autoroute A84.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-3 text-brown-light">
+              <span class="w-2 h-2 bg-moss rounded-full shrink-0"></span>
+              Mont-Saint-Michel : 45 minutes
+            </li>
+            <li class="flex items-center gap-3 text-brown-light">
+              <span class="w-2 h-2 bg-moss rounded-full shrink-0"></span>
+              Utah Beach : 25 minutes
+            </li>
+            <li class="flex items-center gap-3 text-brown-light">
+              <span class="w-2 h-2 bg-moss rounded-full shrink-0"></span>
+              Granville : 35 minutes
+            </li>
+            <li class="flex items-center gap-3 text-brown-light">
+              <span class="w-2 h-2 bg-moss rounded-full shrink-0"></span>
+              Viaduc de la Souleuvre : 20 minutes
+            </li>
+          </ul>
+          <a href="/loisirs" class="btn-secondary">Explorer les activités</a>
+        </div>
+        <Map />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Réservation -->
+  <BookingCTA />
+
 </Layout>

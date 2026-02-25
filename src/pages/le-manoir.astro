@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Gallery from '../components/Gallery.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import { Image } from 'astro:assets';
+
+import heroImage from '../assets/images/exterior/vue-ensemble.jpg';
+import maisonImage from '../assets/images/exterior/maison-principale.jpg';
+import charretterieImage from '../assets/images/exterior/charretterie.jpg';
+import accesImage from '../assets/images/exterior/acces-propriete.jpg';
+import salonImage from '../assets/images/common/salon-commun.jpg';
+import salon1 from '../assets/images/common/salon-1.jpg';
+import salon3 from '../assets/images/common/salon-3.jpg';
+import salon4 from '../assets/images/common/salon-4.jpg';
+import petitDejImage from '../assets/images/common/petit-dejeuner.jpg';
+
+const galleryImages = [
+  { src: maisonImage, alt: 'Maison principale du Manoir du Butel' },
+  { src: charretterieImage, alt: 'La charretterie, abritant les chambres d\'hôtes' },
+  { src: accesImage, alt: 'Accès à la propriété' },
+  { src: salonImage, alt: 'Salon commun' },
+  { src: salon1, alt: 'Intérieur du salon' },
+  { src: petitDejImage, alt: 'Petit-déjeuner fait maison' },
+  { src: salon3, alt: 'Vue intérieure' },
+  { src: salon4, alt: 'Espace de vie' },
+];
+---
+
+<Layout
+  title="Le Manoir — Le Manoir du Butel"
+  description="Découvrez l'histoire du Manoir du Butel, un manoir normand du XVIIe siècle construit par Guillaume de la Gonivière. Trois bâtiments de caractère au coeur du bocage."
+>
+
+  <Hero
+    title="Le Manoir du Butel"
+    subtitle="Un manoir du XVIIe siècle au coeur de la Normandie"
+    image={heroImage}
+    imageAlt="Vue d'ensemble du domaine du Manoir du Butel"
+    height="large"
+  />
+
+  <!-- Histoire -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <h2 class="mb-4">Une histoire de quatre siècles</h2>
+          <div class="separator !mx-0 mb-6"></div>
+          <p class="text-brown-light leading-relaxed mb-4">
+            Le Manoir du Butel a été construit entre <strong>1630 et 1640</strong> par
+            <strong>Guillaume de la Gonivière</strong>, dans le style typique des manoirs
+            normands de l'époque. Ses murs de granit et ses toits d'ardoise témoignent
+            de quatre siècles d'histoire.
+          </p>
+          <p class="text-brown-light leading-relaxed mb-4">
+            Niché dans le bocage normand, à Saint-Symphorien-les-Buttes dans la commune
+            de Saint-Amand Villages, le domaine se compose de trois bâtiments de caractère
+            entourés de jardins et de prairies.
+          </p>
+          <p class="text-brown-light leading-relaxed">
+            La famille Lemariey a restauré le manoir avec soin et passion, alliant
+            l'authenticité du lieu au confort moderne pour vous accueillir dans les
+            meilleures conditions.
+          </p>
+        </div>
+        <div class="relative">
+          <Image
+            src={maisonImage}
+            alt="La maison principale du Manoir du Butel"
+            class="rounded-lg shadow-lg w-full"
+            widths={[400, 700]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Les bâtiments -->
+  <section class="section-padding bg-parchment">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2>Le Domaine</h2>
+        <div class="separator mb-4"></div>
+        <p class="text-brown-light max-w-2xl mx-auto">
+          Trois bâtiments de caractère composent le domaine du Manoir du Butel
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 bg-moss/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-moss" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">La Maison Principale</h3>
+          <p class="text-sm text-brown-light leading-relaxed">
+            Le logis du XVIIe siècle, coeur historique du domaine. C'est ici que
+            se trouvent la salle à manger où est servi le petit-déjeuner et les
+            espaces de réception.
+          </p>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 bg-moss/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-moss" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">La Charretterie</h3>
+          <p class="text-sm text-brown-light leading-relaxed">
+            Ancienne remise à charrettes entièrement rénovée. L'étage abrite les
+            trois chambres d'hôtes et le salon commun privatif. Le rez-de-chaussée
+            sert d'espace de rangement.
+          </p>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 bg-moss/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-moss" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">Les Dépendances</h3>
+          <p class="text-sm text-brown-light leading-relaxed">
+            Les bâtiments annexes complètent le domaine et participent au charme
+            de l'ensemble architectural. Parking gratuit et jardin à disposition
+            des hôtes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Équipements -->
+  <section class="section-padding bg-sand">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2>Nos équipements</h2>
+        <div class="separator mb-4"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0', label: 'WiFi gratuit' },
+          { icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', label: 'Salon privatif' },
+          { icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z', label: 'TV' },
+          { icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z', label: 'Petit-déjeuner inclus' },
+          { icon: 'M3 3h18M3 7h18M3 11h18M3 15h18M3 19h18', label: 'Chaises longues' },
+          { icon: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Bouilloire' },
+          { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', label: 'Parking gratuit' },
+          { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', label: 'Jardin' },
+        ].map(({ icon, label }) => (
+          <div class="flex flex-col items-center gap-3 p-4">
+            <div class="w-12 h-12 bg-offwhite rounded-full flex items-center justify-center shadow-sm">
+              <svg class="w-6 h-6 text-moss" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path d={icon} />
+              </svg>
+            </div>
+            <span class="text-sm text-center font-heading">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <h2 class="text-center mb-4">Galerie photos</h2>
+      <div class="separator mb-8"></div>
+      <Gallery images={galleryImages} columns={4} />
+    </div>
+  </section>
+
+  <BookingCTA />
+
+</Layout>

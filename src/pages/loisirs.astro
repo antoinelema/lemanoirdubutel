@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import { getCollection } from 'astro:content';
+
+import heroImage from '../assets/images/exterior/acces-propriete.jpg';
+
+const loisirs = await getCollection('loisirs');
+const sorted = loisirs.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="Loisirs & Activités — Le Manoir du Butel"
+  description="Découvrez les activités autour du Manoir du Butel : Mont-Saint-Michel, plages du Débarquement, Granville, randonnées, sports nautiques et sensations fortes."
+>
+
+  <Hero
+    title="Loisirs & Activités"
+    subtitle="Mille et une raisons de découvrir la Normandie"
+    image={heroImage}
+    imageAlt="Campagne normande autour du Manoir du Butel"
+    height="large"
+  />
+
+  <!-- Intro -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="mb-4">Explorez la Normandie</h2>
+        <div class="separator mb-6"></div>
+        <p class="text-brown-light leading-relaxed">
+          Idéalement situé entre les plages du Débarquement et le Mont-Saint-Michel,
+          le Manoir du Butel est le point de départ idéal pour découvrir les trésors
+          de la Normandie. Histoire, nature, gastronomie et sensations fortes...
+          il y en a pour tous les goûts.
+        </p>
+      </div>
+
+      <!-- Grille d'activités -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sorted.map((loisir) => (
+          <div class="card p-6">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="text-lg flex-1">{loisir.data.title}</h3>
+              {loisir.data.distance && (
+                <span class="bg-moss/10 text-moss text-xs px-3 py-1 rounded-full font-heading shrink-0 ml-3">
+                  {loisir.data.distance}
+                </span>
+              )}
+            </div>
+            <p class="text-sm text-brown-light leading-relaxed mb-4">{loisir.data.description}</p>
+            {loisir.data.link && (
+              <a
+                href={loisir.data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 text-sm text-moss font-semibold hover:text-moss-dark transition-colors"
+              >
+                En savoir plus
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Carte distances -->
+  <section class="section-padding bg-sand">
+    <div class="container mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="mb-4">Distances depuis le Manoir</h2>
+        <div class="separator mb-6"></div>
+      </div>
+      <div class="max-w-2xl mx-auto">
+        <div class="space-y-4">
+          {[
+            { name: 'Villedieu-les-Poêles', time: '10 min', desc: 'Cité du cuivre, marché le mardi' },
+            { name: 'Viaduc de la Souleuvre', time: '20 min', desc: 'Saut à l\'élastique, tyrolienne' },
+            { name: 'Utah Beach', time: '25 min', desc: 'Plages du Débarquement, musée' },
+            { name: 'Côte Ouest (Barneville)', time: '30 min', desc: 'Plages, sports nautiques' },
+            { name: 'Granville', time: '35 min', desc: 'Monaco du Nord, musée Dior, îles Chausey' },
+            { name: 'Mont-Saint-Michel', time: '45 min', desc: 'Merveille de l\'Occident' },
+            { name: 'Bayeux', time: '50 min', desc: 'Tapisserie de Bayeux, cathédrale' },
+          ].map(({ name, time, desc }) => (
+            <div class="flex items-center gap-4 bg-offwhite rounded-lg p-4">
+              <div class="w-16 text-center shrink-0">
+                <span class="text-lg font-heading font-bold text-moss">{time}</span>
+              </div>
+              <div class="flex-1">
+                <p class="font-heading font-semibold">{name}</p>
+                <p class="text-sm text-brown-light">{desc}</p>
+              </div>
+              <div class="w-2 h-2 bg-moss rounded-full shrink-0"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA
+    title="Envie de découvrir la Normandie ?"
+    subtitle="Réservez votre séjour au Manoir du Butel et explorez tous ces trésors"
+  />
+
+</Layout>

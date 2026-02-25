@@ -1,0 +1,52 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "src/assets/images"
+public_folder: "/src/assets/images"
+
+locale: "fr"
+
+collections:
+  - name: "chambres"
+    label: "Chambres"
+    folder: "src/content/chambres"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "title", widget: "string" }
+      - { label: "Type", name: "type", widget: "select", options: ["Confort", "Familiale"] }
+      - { label: "Surface", name: "surface", widget: "string" }
+      - { label: "Capacité", name: "capacity", widget: "string" }
+      - { label: "Prix", name: "price", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Description courte", name: "shortDescription", widget: "string" }
+      - { label: "Type de lit", name: "bedType", widget: "string" }
+      - { label: "Équipements", name: "equipments", widget: "list" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number" }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "loisirs"
+    label: "Loisirs"
+    folder: "src/content/loisirs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Distance", name: "distance", widget: "string", required: false }
+      - { label: "Lien externe", name: "link", widget: "string", required: false }
+      - { label: "Ordre d'affichage", name: "order", widget: "number" }
+      - { label: "Contenu", name: "body", widget: "markdown", required: false }
+
+  - name: "avis"
+    label: "Avis Clients"
+    folder: "src/content/avis"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Auteur", name: "author", widget: "string" }
+      - { label: "Date", name: "date", widget: "string" }
+      - { label: "Note (1-5)", name: "rating", widget: "number", min: 1, max: 5 }
+      - { label: "Source", name: "source", widget: "string", required: false }
+      - { label: "Témoignage", name: "body", widget: "markdown" }

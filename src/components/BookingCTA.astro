@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import bgImage from '../assets/images/exterior/vue-ensemble.jpg';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Réservez votre séjour",
+  subtitle = "Profitez du charme de la Normandie dans un cadre authentique du XVIIe siècle",
+} = Astro.props;
+---
+
+<section class="relative py-20 md:py-28 overflow-hidden">
+  <Image
+    src={bgImage}
+    alt="Le Manoir du Butel"
+    class="absolute inset-0 w-full h-full object-cover"
+    widths={[640, 1024, 1600]}
+    sizes="100vw"
+  />
+  <div class="absolute inset-0 bg-brown/70"></div>
+  <div class="relative z-10 text-center px-4 max-w-2xl mx-auto">
+    <h2 class="text-offwhite mb-4">{title}</h2>
+    <div class="separator mb-6"></div>
+    <p class="text-offwhite/85 text-lg mb-8">{subtitle}</p>
+    <a
+      href="https://www.lemanoirdubutel.fr/chambres"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-gold text-lg"
+    >
+      Vérifier les disponibilités
+    </a>
+  </div>
+</section>

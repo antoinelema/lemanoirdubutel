@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/Gallery.astro';
+import BookingCTA from '../../components/BookingCTA.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+import charlyPreview from '../../assets/images/rooms/charly/charly-preview.jpg';
+import charly1 from '../../assets/images/rooms/charly/charly-1.jpg';
+import charly2 from '../../assets/images/rooms/charly/charly-2.jpg';
+import charly3 from '../../assets/images/rooms/charly/charly-3.jpg';
+import charly4 from '../../assets/images/rooms/charly/charly-4.jpg';
+
+import mathieuPreview from '../../assets/images/rooms/mathieu/mathieu-preview.jpg';
+import mathieu1 from '../../assets/images/rooms/mathieu/mathieu-1.jpg';
+import mathieu2 from '../../assets/images/rooms/mathieu/mathieu-2.jpg';
+import mathieu3 from '../../assets/images/rooms/mathieu/mathieu-3.jpg';
+import mathieu4 from '../../assets/images/rooms/mathieu/mathieu-4.jpg';
+
+import naturePreview from '../../assets/images/rooms/nature/nature-preview.jpg';
+import nature1 from '../../assets/images/rooms/nature/nature-1.jpg';
+import nature2 from '../../assets/images/rooms/nature/nature-2.jpg';
+import nature3 from '../../assets/images/rooms/nature/nature-3.jpg';
+import nature4 from '../../assets/images/rooms/nature/nature-4.jpg';
+import nature5 from '../../assets/images/rooms/nature/nature-5.jpg';
+import nature6 from '../../assets/images/rooms/nature/nature-6.jpg';
+import nature7 from '../../assets/images/rooms/nature/nature-7.jpg';
+
+const roomGalleries: Record<string, { src: ImageMetadata; alt: string }[]> = {
+  charly: [
+    { src: charlyPreview, alt: 'Chambre Charly - vue principale' },
+    { src: charly1, alt: 'Chambre Charly - vue 2' },
+    { src: charly2, alt: 'Chambre Charly - vue 3' },
+    { src: charly3, alt: 'Chambre Charly - vue 4' },
+    { src: charly4, alt: 'Chambre Charly - vue 5' },
+  ],
+  mathieu: [
+    { src: mathieuPreview, alt: 'Chambre Mathieu - vue principale' },
+    { src: mathieu1, alt: 'Chambre Mathieu - vue 2' },
+    { src: mathieu2, alt: 'Chambre Mathieu - vue 3' },
+    { src: mathieu3, alt: 'Chambre Mathieu - vue 4' },
+    { src: mathieu4, alt: 'Chambre Mathieu - vue 5' },
+  ],
+  nature: [
+    { src: naturePreview, alt: 'Chambre Nature - vue principale' },
+    { src: nature1, alt: 'Chambre Nature - vue 2' },
+    { src: nature2, alt: 'Chambre Nature - vue 3' },
+    { src: nature3, alt: 'Chambre Nature - vue 4' },
+    { src: nature4, alt: 'Chambre Nature - vue 5' },
+    { src: nature5, alt: 'Chambre Nature - douche' },
+    { src: nature6, alt: 'Chambre Nature - vue 6' },
+    { src: nature7, alt: 'Chambre Nature - vue 7' },
+  ],
+};
+
+export async function getStaticPaths() {
+  const chambres = await getCollection('chambres');
+  return chambres.map((chambre) => ({
+    params: { id: chambre.id },
+    props: { chambre },
+  }));
+}
+
+const { chambre } = Astro.props;
+const { Content } = await render(chambre);
+const images = roomGalleries[chambre.id] || [];
+const heroImage = images[0]?.src;
+---
+
+<Layout
+  title={`${chambre.data.title} — Le Manoir du Butel`}
+  description={chambre.data.description}
+>
+
+  <!-- Hero image -->
+  <section class="relative min-h-[50vh] md:min-h-[60vh] flex items-end overflow-hidden">
+    {heroImage && (
+      <Image
+        src={heroImage}
+        alt={chambre.data.title}
+        class="absolute inset-0 w-full h-full object-cover"
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        loading="eager"
+      />
+    )}
+    <div class="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/20 to-brown/40"></div>
+    <div class="relative z-10 container mx-auto px-4 md:px-8 pb-10">
+      <nav class="text-offwhite/70 text-sm mb-4">
+        <a href="/" class="hover:text-offwhite">Accueil</a>
+        <span class="mx-2">/</span>
+        <a href="/chambres" class="hover:text-offwhite">Chambres</a>
+        <span class="mx-2">/</span>
+        <span class="text-offwhite">{chambre.data.title}</span>
+      </nav>
+      <h1 class="text-offwhite text-3xl md:text-5xl mb-2">{chambre.data.title}</h1>
+      <div class="flex flex-wrap gap-4 text-offwhite/80 text-sm mt-4">
+        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.type}</span>
+        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.surface}</span>
+        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.capacity}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infos et contenu -->
+  <section class="section-padding bg-offwhite">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Contenu principal -->
+        <div class="lg:col-span-2">
+          <div class="prose prose-lg max-w-none text-brown-light [&_h2]:font-heading [&_h2]:text-brown [&_h2]:text-2xl [&_h2]:mt-8 [&_h2]:mb-4">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-sand rounded-lg p-6 sticky top-24">
+            <p class="font-heading text-2xl text-moss mb-1">{chambre.data.price}</p>
+            <p class="text-sm text-brown-light mb-6">Petit-déjeuner inclus</p>
+
+            <a
+              href="https://www.lemanoirdubutel.fr/chambres"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-gold w-full block text-center mb-6"
+            >
+              Réserver cette chambre
+            </a>
+
+            <h3 class="text-lg mb-3">Équipements</h3>
+            <ul class="space-y-2">
+              {chambre.data.equipments.map((eq: string) => (
+                <li class="flex items-center gap-2 text-sm text-brown-light">
+                  <svg class="w-4 h-4 text-moss shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                  {eq}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-6 pt-6 border-t border-stone/30">
+              <h3 class="text-lg mb-3">Couchage</h3>
+              <p class="text-sm text-brown-light">{chambre.data.bedType}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  {images.length > 1 && (
+    <section class="section-padding bg-parchment">
+      <div class="container mx-auto">
+        <h2 class="text-center mb-4">Galerie photos</h2>
+        <div class="separator mb-8"></div>
+        <Gallery images={images} columns={images.length > 4 ? 4 : 3} />
+      </div>
+    </section>
+  )}
+
+  <BookingCTA />
+
+</Layout>

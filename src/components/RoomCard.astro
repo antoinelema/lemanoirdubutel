@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  slug: string;
+  image: ImageMetadata;
+  capacity: string;
+  surface: string;
+  price: string;
+  description: string;
+}
+
+const { title, slug, image, capacity, surface, price, description } = Astro.props;
+---
+
+<a href={`/chambres/${slug}`} class="card group block">
+  <div class="relative overflow-hidden aspect-[4/3]">
+    <Image
+      src={image}
+      alt={`Chambre ${title}`}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      widths={[400, 600]}
+      sizes="(max-width: 768px) 100vw, 33vw"
+    />
+    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brown/80 to-transparent p-4">
+      <span class="text-offwhite text-sm font-heading">{price}</span>
+    </div>
+  </div>
+  <div class="p-5 md:p-6">
+    <h3 class="text-xl mb-2 group-hover:text-moss transition-colors">{title}</h3>
+    <div class="flex gap-4 text-sm text-brown-light mb-3">
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        {capacity}
+      </span>
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+        </svg>
+        {surface}
+      </span>
+    </div>
+    <p class="text-sm text-brown-light leading-relaxed line-clamp-2">{description}</p>
+  </div>
+</a>

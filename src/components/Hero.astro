@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  ctaText?: string;
+  ctaLink?: string;
+  overlay?: boolean;
+  height?: 'full' | 'large' | 'medium';
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  ctaText,
+  ctaLink,
+  overlay = true,
+  height = 'full',
+} = Astro.props;
+
+const heightClass = {
+  full: 'min-h-screen',
+  large: 'min-h-[70vh]',
+  medium: 'min-h-[50vh]',
+}[height];
+---
+
+<section class={`relative ${heightClass} flex items-center justify-center overflow-hidden`}>
+  <Image
+    src={image}
+    alt={imageAlt}
+    class="absolute inset-0 w-full h-full object-cover"
+    widths={[640, 1024, 1600]}
+    sizes="100vw"
+    loading="eager"
+  />
+  {overlay && (
+    <div class="absolute inset-0 bg-gradient-to-b from-brown/60 via-brown/30 to-brown/60"></div>
+  )}
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+    <h1 class="text-offwhite drop-shadow-lg mb-4">{title}</h1>
+    {subtitle && (
+      <p class="text-offwhite/90 text-lg md:text-xl font-body leading-relaxed mb-8 drop-shadow">
+        {subtitle}
+      </p>
+    )}
+    {ctaText && ctaLink && (
+      <a
+        href={ctaLink}
+        target={ctaLink.startsWith('http') ? '_blank' : undefined}
+        rel={ctaLink.startsWith('http') ? 'noopener noreferrer' : undefined}
+        class="btn-gold text-lg"
+      >
+        {ctaText}
+      </a>
+    )}
+  </div>
+
+  <!-- Scroll indicator -->
+  {height === 'full' && (
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-offwhite/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  )}
+</section>

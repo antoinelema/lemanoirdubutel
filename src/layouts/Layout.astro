@@ -1,23 +1,96 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = "Chambres d'hôtes de charme en Normandie, entre les plages du Débarquement et le Mont-Saint-Michel. Manoir du XVIIe siècle à Saint-Amand Villages.",
+  image = '/images/og-default.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BedAndBreakfast",
+      "name": "Le Manoir du Butel",
+      "description": "Chambres d'hôtes de charme dans un manoir du XVIIe siècle en Normandie",
+      "url": "https://lemanoirdubutel.fr",
+      "telephone": "+33233556414",
+      "email": "manoirdubutel@orange.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "11 Le Butel, St Symphorien les Buttes",
+        "addressLocality": "Saint-Amand Villages",
+        "postalCode": "50160",
+        "addressRegion": "Normandie",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.017335,
+        "longitude": -0.943841
+      },
+      "priceRange": "75€ - 85€",
+      "numberOfRooms": 3,
+      "checkinTime": "17:00",
+      "checkoutTime": "11:00",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "WiFi gratuit", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Petit-déjeuner inclus", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Animaux acceptés", "value": true }
+      ],
+      "paymentAccepted": "Chèques, Chèques vacances, Espèces"
+    })} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
