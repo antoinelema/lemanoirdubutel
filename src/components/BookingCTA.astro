@@ -21,18 +21,19 @@ const {
     widths={[640, 1024, 1600]}
     sizes="100vw"
   />
-  <div class="absolute inset-0 bg-brown/45"></div>
-  <div class="relative z-10 text-center px-4 max-w-2xl mx-auto">
-    <h2 class="text-offwhite mb-4">{title}</h2>
-    <div class="separator mb-6"></div>
-    <p class="text-offwhite/85 text-lg mb-8">{subtitle}</p>
-    <a
-      href="https://www.lemanoirdubutel.fr/chambres"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-gold text-lg"
-    >
-      Vérifier les disponibilités
-    </a>
+  <div class="relative z-10 text-center px-4">
+    <div class="bg-parchment/85 backdrop-blur-sm rounded-xl max-w-2xl mx-auto py-10 px-6 md:px-12">
+      <h2 class="text-brown mb-4">{title}</h2>
+      <div class="separator mb-6"></div>
+      <p class="text-brown-light text-lg mb-8">{subtitle}</p>
+      <a
+        href="https://www.lemanoirdubutel.fr/chambres"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold text-lg"
+      >
+        Vérifier les disponibilités
+      </a>
+    </div>
   </div>
 </section>

@@ -23,8 +23,8 @@ const { title, slug, image, capacity, surface, price, description } = Astro.prop
       widths={[400, 600]}
       sizes="(max-width: 768px) 100vw, 33vw"
     />
-    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brown/60 to-transparent p-4">
-      <span class="text-offwhite text-sm font-heading">{price}</span>
+    <div class="absolute bottom-3 left-3">
+      <span class="bg-parchment/90 text-brown text-sm font-heading px-3 py-1 rounded-full">{price}</span>
     </div>
   </div>
   <div class="p-5 md:p-6">

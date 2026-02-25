@@ -162,4 +162,16 @@
     box-shadow: 0 8px 24px rgba(59, 47, 47, 0.12);
     transform: translateY(-2px);
   }
+
+  .hero-text-shadow {
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.6),
+      0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .hero-text-shadow-light {
+    text-shadow:
+      0 1px 6px rgba(0, 0, 0, 0.5),
+      0 1px 2px rgba(0, 0, 0, 0.3);
+  }
 }

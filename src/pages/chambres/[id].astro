@@ -73,7 +73,7 @@ const heroImage = images[0]?.src;
 >
 
   <!-- Hero image -->
-  <section class="relative min-h-[50vh] md:min-h-[60vh] flex items-end overflow-hidden">
+  <section class="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
     {heroImage && (
       <Image
         src={heroImage}
@@ -84,26 +84,27 @@ const heroImage = images[0]?.src;
         loading="eager"
       />
     )}
-    <div class="absolute inset-0 bg-gradient-to-t from-brown/60 via-brown/10 to-brown/25"></div>
-    <div class="relative z-10 container mx-auto px-4 md:px-8 pb-10">
-      <nav class="text-offwhite/70 text-sm mb-4">
-        <a href="/" class="hover:text-offwhite">Accueil</a>
-        <span class="mx-2">/</span>
-        <a href="/chambres" class="hover:text-offwhite">Chambres</a>
-        <span class="mx-2">/</span>
-        <span class="text-offwhite">{chambre.data.title}</span>
-      </nav>
-      <h1 class="text-offwhite text-3xl md:text-5xl mb-2">{chambre.data.title}</h1>
-      <div class="flex flex-wrap gap-4 text-offwhite/80 text-sm mt-4">
-        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.type}</span>
-        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.surface}</span>
-        <span class="bg-offwhite/20 px-3 py-1 rounded-full">{chambre.data.capacity}</span>
-      </div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-white hero-text-shadow text-3xl md:text-5xl">{chambre.data.title}</h1>
     </div>
   </section>
 
   <!-- Infos et contenu -->
   <section class="section-padding bg-offwhite">
+    <div class="container mx-auto mb-8">
+      <nav class="text-brown-light text-sm mb-4">
+        <a href="/" class="hover:text-moss">Accueil</a>
+        <span class="mx-2">/</span>
+        <a href="/chambres" class="hover:text-moss">Chambres</a>
+        <span class="mx-2">/</span>
+        <span class="text-brown">{chambre.data.title}</span>
+      </nav>
+      <div class="flex flex-wrap gap-3 text-sm">
+        <span class="bg-moss/10 text-moss px-3 py-1 rounded-full font-heading">{chambre.data.type}</span>
+        <span class="bg-moss/10 text-moss px-3 py-1 rounded-full font-heading">{chambre.data.surface}</span>
+        <span class="bg-moss/10 text-moss px-3 py-1 rounded-full font-heading">{chambre.data.capacity}</span>
+      </div>
+    </div>
     <div class="container mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <!-- Contenu principal -->

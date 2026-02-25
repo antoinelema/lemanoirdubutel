@@ -11,12 +11,12 @@ const navLinks = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
+<header class="fixed top-0 left-0 right-0 z-50 bg-parchment/90 backdrop-blur-sm shadow-sm transition-all duration-300" id="main-header">
   <div class="container mx-auto px-4 md:px-8">
-    <nav class="flex items-center justify-between py-4">
+    <nav class="flex items-center justify-between py-3">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <span class="font-heading text-xl md:text-2xl font-bold text-offwhite group-hover:text-gold transition-colors">
+        <span class="font-heading text-xl md:text-2xl font-bold text-brown group-hover:text-moss transition-colors">
           Le Manoir du Butel
         </span>
       </a>
@@ -31,7 +31,7 @@ const navLinks = [
                 'font-heading text-sm tracking-wider uppercase transition-colors duration-200',
                 currentPath === href || (href !== '/' && currentPath.startsWith(href))
                   ? 'text-gold font-semibold'
-                  : 'text-offwhite/90 hover:text-gold',
+                  : 'text-brown-light hover:text-moss',
               ]}
             >
               {label}
@@ -57,9 +57,9 @@ const navLinks = [
         aria-label="Ouvrir le menu"
         aria-expanded="false"
       >
-        <span class="block w-6 h-0.5 bg-offwhite transition-all duration-300" id="burger-top"></span>
-        <span class="block w-6 h-0.5 bg-offwhite transition-all duration-300" id="burger-mid"></span>
-        <span class="block w-6 h-0.5 bg-offwhite transition-all duration-300" id="burger-bot"></span>
+        <span class="block w-6 h-0.5 bg-brown transition-all duration-300" id="burger-top"></span>
+        <span class="block w-6 h-0.5 bg-brown transition-all duration-300" id="burger-mid"></span>
+        <span class="block w-6 h-0.5 bg-brown transition-all duration-300" id="burger-bot"></span>
       </button>
     </nav>
   </div>
@@ -67,7 +67,7 @@ const navLinks = [
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden fixed inset-0 top-0 bg-brown/98 backdrop-blur-sm transform translate-x-full transition-transform duration-300 z-40"
+    class="lg:hidden fixed inset-0 top-0 bg-parchment/98 backdrop-blur-sm transform translate-x-full transition-transform duration-300 z-40"
   >
     <div class="flex flex-col items-center justify-center h-full gap-8">
       {navLinks.map(({ href, label }) => (
@@ -75,7 +75,7 @@ const navLinks = [
           href={href}
           class:list={[
             'font-heading text-2xl tracking-wider uppercase transition-colors',
-            currentPath === href ? 'text-gold' : 'text-offwhite/90 hover:text-gold',
+            currentPath === href ? 'text-gold' : 'text-brown hover:text-moss',
           ]}
         >
           {label}
@@ -103,15 +103,15 @@ const navLinks = [
 
   let isMenuOpen = false;
 
-  // Scroll effect
+  // Scroll effect - slightly more opaque on scroll
   function updateHeader() {
     if (!header) return;
     if (window.scrollY > 50) {
-      header.classList.add('bg-brown/95', 'backdrop-blur-sm', 'shadow-lg');
-      header.classList.remove('bg-transparent');
+      header.classList.add('bg-parchment/95', 'shadow-md');
+      header.classList.remove('bg-parchment/90', 'shadow-sm');
     } else {
-      header.classList.remove('bg-brown/95', 'backdrop-blur-sm', 'shadow-lg');
-      header.classList.add('bg-transparent');
+      header.classList.remove('bg-parchment/95', 'shadow-md');
+      header.classList.add('bg-parchment/90', 'shadow-sm');
     }
   }
 
