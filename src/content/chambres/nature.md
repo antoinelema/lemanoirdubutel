@@ -12,7 +12,8 @@ equipments:
   - "Canapé-lit enfants"
   - "Salle de douche privative"
   - "WC privatif"
-  - "WiFi gratuit"
+  - "Télévision"
+  - "WiFi gratuit (fibre)"
   - "Salon commun TV"
   - "Bouilloire & thé"
   - "Réfrigérateur partagé"
@@ -28,7 +29,7 @@ La chambre peut être configurée avec un lit queen-size pour les couples, ou av
 
 ## Équipements
 
-Salle de douche privative moderne avec WC, WiFi gratuit, et accès au salon commun partagé avec les autres chambres d'hôtes.
+Salle de douche privative moderne avec WC, WiFi gratuit (fibre), et accès au salon commun partagé avec les autres chambres d'hôtes.
 
 ## Le petit-déjeuner
 

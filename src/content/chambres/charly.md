@@ -11,7 +11,7 @@ equipments:
   - "Lit double 160×200 cm"
   - "Salle de douche privative"
   - "WC privatif"
-  - "WiFi gratuit"
+  - "WiFi gratuit (fibre)"
   - "Salon commun TV"
   - "Bouilloire & thé"
   - "Réfrigérateur partagé"
