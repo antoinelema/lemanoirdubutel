@@ -1,8 +1,8 @@
 ---
 author: "Catherine"
 date: "Septembre 2024"
-rating: 5
+rating: 4
 source: "TripAdvisor"
 ---
 
-Un vrai havre de paix ! Le manoir est magnifique, les chambres confortables et décorées avec goût. Le jardin est un bonheur pour se détendre après une journée de visite. Nous avons adoré le calme et la sérénité du lieu. Le petit-déjeuner est un moment de pur plaisir.
+Bel emplacement au calme dans la campagne normande. L'accueil est chaleureux et le petit-déjeuner copieux avec des produits locaux et des gâteaux maison. Seul petit bémol : pas de paiement par carte bancaire, pensez à prévoir chèques ou espèces.

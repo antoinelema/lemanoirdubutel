@@ -1,8 +1,8 @@
 ---
-author: "François & Isabelle"
-date: "Avril 2024"
-rating: 4
-source: "Google"
+author: "Pierre & Anne"
+date: "Juin 2024"
+rating: 5
+source: "Booking.com"
 ---
 
-Très bel endroit pour un week-end en Normandie. Le manoir a beaucoup de cachet et l'accueil est chaleureux. Petit-déjeuner excellent avec des produits frais. Seul petit bémol : pas de paiement par carte bancaire, pensez à prévoir chèques ou espèces.
+Superbe manoir avec beaucoup de cachet. La propriété est magnifique et très bien entretenue. Le petit-déjeuner du dimanche avec le gâteau au citron était un moment de pur bonheur. Idéalement situé entre le Mont-Saint-Michel et les plages du Débarquement.

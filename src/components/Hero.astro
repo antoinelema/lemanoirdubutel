@@ -9,6 +9,7 @@ interface Props {
   ctaText?: string;
   ctaLink?: string;
   height?: 'full' | 'large' | 'medium';
+  imagePosition?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   ctaText,
   ctaLink,
   height = 'full',
+  imagePosition,
 } = Astro.props;
 
 const heightClass = {
@@ -33,6 +35,7 @@ const heightClass = {
     src={image}
     alt={imageAlt}
     class="absolute inset-0 w-full h-full object-cover"
+    style={imagePosition ? `object-position: ${imagePosition}` : undefined}
     widths={[640, 1024, 1600]}
     sizes="100vw"
     loading="eager"

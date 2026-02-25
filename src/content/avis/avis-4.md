@@ -1,8 +1,8 @@
 ---
-author: "Helen & John"
-date: "Mai 2024"
+author: "Marc"
+date: "Juillet 2024"
 rating: 5
-source: "Booking.com"
+source: "Google"
 ---
 
-A wonderful B&B in the heart of Normandy. The manor house is charming and full of character. Our hosts were incredibly welcoming and provided excellent recommendations for visiting the area. The homemade breakfast was outstanding. We will definitely return!
+Atmosphère très chaleureuse et paisible en pleine nature. Les hôtes sont aux petits soins et connaissent parfaitement la région pour les conseils de visite. Les chambres sont confortables avec des lits très agréables. Le calme absolu, on n'entend que les oiseaux.

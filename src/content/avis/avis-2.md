@@ -1,8 +1,8 @@
 ---
-author: "Jean-Claude"
-date: "Juillet 2024"
+author: "Helen & John"
+date: "Mai 2024"
 rating: 5
-source: "TripAdvisor"
+source: "Booking.com"
 ---
 
-Quelle belle découverte que ce manoir du XVIIe siècle ! Le cadre est exceptionnel, au calme absolu de la campagne normande. Les hôtes sont d'une gentillesse rare et connaissent parfaitement la région. Le petit-déjeuner copieux avec des produits locaux est un vrai bonheur. À recommander sans hésitation.
+A wonderful B&B in the heart of Normandy. The manor house is charming and full of character. Our hosts were incredibly welcoming and provided excellent recommendations for visiting the area. The homemade breakfast was outstanding. We will definitely return!
