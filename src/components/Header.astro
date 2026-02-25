@@ -62,32 +62,33 @@ const navLinks = [
     </nav>
   </div>
 
-  <!-- Mobile Menu -->
-  <div
-    id="mobile-menu"
-    class="lg:hidden fixed inset-0 top-0 bg-parchment/98 backdrop-blur-sm transform translate-x-full transition-transform duration-300 z-40"
-  >
-    <div class="flex flex-col items-center justify-center h-full gap-8">
-      {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class:list={[
-            'font-heading text-2xl tracking-wider uppercase transition-colors',
-            currentPath === href ? 'text-gold' : 'text-brown hover:text-moss',
-          ]}
-        >
-          {label}
-        </a>
-      ))}
-      <a
-        href="/reserver"
-        class="btn-gold text-lg mt-4"
-      >
-        Réserver
-      </a>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile Menu (outside header to avoid backdrop-blur containing block) -->
+<div
+  id="mobile-menu"
+  class="lg:hidden fixed inset-0 bg-parchment transform translate-x-full transition-transform duration-300 z-40"
+>
+  <div class="flex flex-col items-center justify-center h-full gap-8">
+    {navLinks.map(({ href, label }) => (
+      <a
+        href={href}
+        class:list={[
+          'font-heading text-2xl tracking-wider uppercase transition-colors',
+          currentPath === href ? 'text-gold' : 'text-brown hover:text-moss',
+        ]}
+      >
+        {label}
+      </a>
+    ))}
+    <a
+      href="/reserver"
+      class="btn-gold text-lg mt-4"
+    >
+      Réserver
+    </a>
+  </div>
+</div>
 
 <script>
   const header = document.getElementById('main-header');
